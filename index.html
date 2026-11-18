@@ -32,7 +32,7 @@ header.top{background:var(--ink);color:var(--band-text);display:flex;align-items
 .foods{grid-template-columns:repeat(auto-fill,minmax(112px,1fr))}
 .tools{grid-template-columns:2fr 1fr 1fr 1fr 1fr}
 button.cell,.cell{background:var(--cell);border:0;font:inherit;color:inherit;text-align:left;padding:6px 10px;cursor:pointer;min-width:0}
-button.cell:hover{background:#FFF6E8}
+@media (hover:hover){button.cell:hover{background:#FFF6E8}}
 button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
 button.cell[aria-pressed="true"]{background:var(--accent);color:var(--ink)}
 button.cell:disabled{background:var(--cell);color:var(--rule);cursor:default}
@@ -72,7 +72,7 @@ button.cell:disabled .lbl{color:var(--rule)}
 .row dd{margin:0;min-width:0;overflow-wrap:anywhere;text-wrap:pretty}
 .acts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border-top:1px solid var(--rule)}
 .acts>*{background:var(--cell);border:0;font:inherit;font-size:12px;color:var(--ink);text-align:center;padding:5px 4px;cursor:pointer;text-decoration:none}
-.acts>*:hover{background:#FFF6E8}
+@media (hover:hover){.acts>*:hover{background:#FFF6E8}}
 .acts button:disabled{background:var(--cell);color:var(--rule);cursor:default}
 .acts .open:not(:disabled){font-weight:700}
 .acts button[aria-pressed="true"].made{background:var(--ink);color:var(--band-text)}
@@ -101,26 +101,43 @@ footer{font-size:12px;color:var(--sub);display:grid;gap:4px}
 body.lock{overflow:hidden}
 .sheet{position:fixed;inset:0;z-index:20;background:var(--bg);overflow-y:auto;overscroll-behavior:contain;
   padding:calc(12px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(40px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
-.sheet-in{max-width:760px;margin:0 auto;display:grid;gap:10px}
+.sheet-in,.sh-view{max-width:760px;width:100%;margin:0 auto;display:grid;gap:10px}
 .sh-head{background:var(--ink);color:var(--band-text);display:grid;grid-template-columns:1fr auto}
 .sh-title{padding:10px 14px 9px;min-width:0}
 .sh-meta{font-size:11.5px;color:#BDBDB6;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .sh-meta .kind{background:transparent;border-color:#BDBDB6;color:var(--band-text)}
 .sh-meta b{font-family:var(--f-mono);font-weight:500;color:var(--band-text)}
+.sh-meta .ed{font-size:11px;font-weight:700;padding:0 5px;background:var(--accent);color:var(--ink)}
+.sh-meta .wl{font-size:11px;padding:0 5px;border:1px solid #BDBDB6;color:var(--band-text)}
 .sh-name{font-size:19px;font-weight:700;line-height:1.35;margin-top:3px;overflow-wrap:anywhere;text-wrap:balance}
 .sh-x{background:var(--accent);color:var(--ink);border:0;font:inherit;font-size:13px;font-weight:700;padding:0 16px;cursor:pointer}
-.ing,.steps,.tipg{grid-template-columns:1fr}
+.serv{grid-template-columns:repeat(6,1fr);border-bottom:0}
+.serv.x3{grid-template-columns:repeat(3,1fr)}
+.serv .cell{text-align:center;padding:6px 2px;font-size:13px;white-space:nowrap}
+.ing,.steps,.tipg,.edg{grid-template-columns:1fr}
 @media(min-width:640px){.ing{grid-template-columns:1fr 1fr}}
 .ing .cell{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:14px;cursor:default;padding:7px 12px}
 .ing .amt{white-space:nowrap;font-variant-numeric:tabular-nums}
-.steps .cell{display:grid;grid-template-columns:1.8em 1fr;gap:8px;font-size:15px;line-height:1.7;cursor:default;padding:9px 12px}
-.steps .no{font-family:var(--f-mono);font-size:17px;line-height:1.5;color:var(--accent-ink)}
+.steps .cell{display:grid;grid-template-columns:1.8em 1fr;gap:8px;width:100%;font-size:15px;line-height:1.75;padding:10px 12px}
+.steps .no{font-family:var(--f-mono);font-size:17px;line-height:1.55;color:var(--accent-ink)}
+.steps .q{font-weight:700;white-space:nowrap}
+.steps .done{background:#F6F6F3;color:var(--sub)}
+.steps .done .no{color:var(--accent)}
+.steps .done .q{font-weight:500}
+.steps .rs{display:block;text-align:center;font-size:13px;color:var(--sub);padding:8px}
 .tipg .cell{font-size:14px;cursor:default;padding:9px 12px}
-.sh-acts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
-.sh-acts>*{background:var(--cell);border:0;font:inherit;font-size:13px;color:var(--ink);text-align:center;padding:10px 4px;cursor:pointer;text-decoration:none}
-.sh-acts>*:hover{background:#FFF6E8}
+.edg .cell{cursor:default;padding:7px 12px}
+.edg label{display:block;font-size:12px;color:var(--sub)}
+.edg input,.edg textarea{width:100%;border:0;border-bottom:1px solid var(--rule);background:transparent;font:inherit;font-size:15px;line-height:1.7;padding:4px 0;color:var(--ink);border-radius:0;resize:vertical}
+.sh-acts,.ed-acts{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.sh-acts{grid-template-columns:repeat(5,1fr)}
+.ed-acts{grid-template-columns:repeat(3,1fr)}
+.sh-acts>*,.ed-acts>*{background:var(--cell);border:0;font:inherit;font-size:13px;color:var(--ink);text-align:center;padding:10px 2px;cursor:pointer;text-decoration:none;white-space:nowrap}
+@media (hover:hover){.sh-acts>*:hover,.ed-acts>*:hover{background:#FFF6E8}}
 .sh-acts button[aria-pressed="true"].made{background:var(--ink);color:var(--band-text)}
 .sh-acts button[aria-pressed="true"].want{background:var(--accent)}
+.ed-acts .save{background:var(--accent);font-weight:700}
+.ed-acts button:disabled{color:var(--rule);cursor:default}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style></head><body>
 
@@ -189,10 +206,21 @@ body.lock{overflow:hidden}
 <div class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="shName">
   <div class="sheet-in">
     <div class="sh-head"><div class="sh-title"><div class="sh-meta" id="shMeta"></div><div class="sh-name" id="shName"></div></div><button class="sh-x" id="shX">閉じる</button></div>
-    <section><div class="band"><span>INGREDIENTS</span><span id="shServ"></span></div><div class="grid ing" id="shIng"></div></section>
-    <section><div class="band"><span>STEPS</span><span>作り方</span></div><div class="grid steps" id="shSteps"></div></section>
-    <section><div class="band"><span>POINT</span><span>コツ</span></div><div class="grid tipg"><div class="cell" id="shTip"></div></div></section>
-    <div class="sh-acts" id="shActs"></div>
+    <div class="sh-view" id="shView">
+      <section><div class="band"><span>INGREDIENTS</span><span id="shServ"></span></div><div class="grid serv" id="shPeople"></div><div class="grid ing" id="shIng"></div></section>
+      <section><div class="band"><span>STEPS</span><span>作り方（押すと済みの印）</span></div><div class="grid steps" id="shSteps"></div></section>
+      <section><div class="band"><span>POINT</span><span>コツ</span></div><div class="grid tipg"><div class="cell" id="shTip"></div></div></section>
+      <div class="sh-acts" id="shActs"></div>
+    </div>
+    <div class="sh-view" id="shEdit" hidden>
+      <section><div class="band"><span>EDIT</span><span>自分用に書き換え（この端末に保存）</span></div>
+        <div class="grid edg">
+          <div class="cell"><label for="edServ">分量の単位（例：2人分）</label><input id="edServ" autocomplete="off"></div>
+          <div class="cell"><label for="edIng">材料（1行に1つ。名前と分量の間は空白）</label><textarea id="edIng" rows="10"></textarea></div>
+          <div class="cell"><label for="edSteps">作り方（1行に1手順。［ ］で囲んだ分量は人数に合わせて変わります）</label><textarea id="edSteps" rows="12"></textarea></div>
+        </div></section>
+      <div class="ed-acts"><button class="save" id="edSave">保存</button><button id="edReset">標準に戻す</button><button id="edCancel">やめる</button></div>
+    </div>
   </div>
 </div>
 
@@ -270,7 +298,7 @@ function card(d){
       <dl class="row"><dt>コツ</dt><dd>${esc(d.tip)}</dd></dl>${d.sc?`
       <dl class="row"><dt>場面</dt><dd>${[...d.sc].map(c=>SFULL[c]).join("／")}</dd></dl>`:""}</div>
     <div class="acts">
-      <button class="open" data-act="open"${R[d.name]?"":" disabled"}>作り方</button>
+      <button class="open" data-act="open"${recipe(d)?"":" disabled"}>作り方</button>
       <button class="made" data-mark="made" aria-pressed="${!!m.made}">作った</button>
       <button class="want" data-mark="want" aria-pressed="${!!m.want}">作りたい</button>
       <a href="${esc(d.url)}" target="_blank" rel="noopener">元の記事</a>
@@ -314,29 +342,88 @@ $("list").addEventListener("click",e=>{
   afterMark(d,toggleMark(d,b.dataset.mark));
 });
 // 作り方の画面
-let R={},cur=null,pushed=false;
-function sheetActs(d){const m=marks[d.name]||{};
-  $("shActs").innerHTML=`<button class="made" data-mark="made" aria-pressed="${!!m.made}">作った</button><button class="want" data-mark="want" aria-pressed="${!!m.want}">作りたい</button><a href="${esc(d.url)}" target="_blank" rel="noopener">元の記事</a><button data-act="close">閉じる</button>`}
-function openSheet(d){
-  const r=R[d.name];if(!r)return;cur=d;
-  $("shMeta").innerHTML=`<span class="kind">${CLABEL[d.cat]}</span><span>${SRC[d.src][0]}</span>${d.tl?`<span>時間 <b>${d.tl}</b></span>`:""}`;
-  $("shName").textContent=d.name;
-  $("shServ").textContent=`材料（${r[0]}）`;
-  $("shIng").innerHTML=r[1].map(([a,b])=>`<div class="cell"><span>${esc(a)}</span><span class="amt">${esc(b)}</span></div>`).join("");
-  $("shSteps").innerHTML=r[2].map((t,i)=>`<div class="cell"><span class="no">${i+1}</span><span>${esc(t)}</span></div>`).join("");
-  $("shTip").textContent=d.tip;
-  sheetActs(d);
-  $("sheet").hidden=false;document.body.classList.add("lock");$("sheet").scrollTop=0;fill($("shIng"),"cell gap");
-  if(top===self){try{history.pushState({bl:1},"");pushed=true}catch(e){}}
-  $("shX").focus({preventScroll:true});
+let R={},cur=null,pushed=false,mult=1,wl=null;
+const jget=k=>{try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}};
+const jset=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+let edits=jget("bistrolab-edits")||{},doneS=jget("bistrolab-steps")||{},people=jget("bistrolab-people")||0;
+const recipe=d=>edits[d.name]||R[d.name]||null;
+const baseN=s=>{const m=/^(\d+)人分$/.exec(s);return m?+m[1]:0};
+const curN=s=>people||baseN(s);
+const factor=s=>baseN(s)?curN(s)/baseN(s):mult;
+// 分量の数字を人数（倍率）に合わせて書き換える。%は変えない
+const FRS=[[1/8,"1/8"],[1/6,"1/6"],[1/4,"1/4"],[1/3,"1/3"],[1/2,"1/2"],[2/3,"2/3"],[3/4,"3/4"]];
+const pnum=s=>{let m=/^(\d+)と(\d+)\/(\d+)$/.exec(s);if(m)return +m[1]+m[2]/m[3];m=/^(\d+)\/(\d+)$/.exec(s);if(m)return m[1]/m[2];return parseFloat(s)};
+function fnum(v,u){
+  if(/^(g|ml|mL|cc)/.test(u))return String(v>=50?Math.round(v/5)*5:Math.max(1,Math.round(v)));
+  if(/^(kg|L)/.test(u))return String(Math.round(v*10)/10);
+  const w=Math.floor(v),f=v-w;
+  if(f<0.07)return w?String(w):"1/8";
+  if(f>0.93)return String(w+1);
+  let best="",bd=9;for(const [x,t] of FRS){const d=Math.abs(f-x);if(d<bd){bd=d;best=t}}
+  return w?`${w}と${best}`:best;
 }
-function hideSheet(){$("sheet").hidden=true;document.body.classList.remove("lock");
+const scaleAmt=(s,f)=>f===1?s:s.replace(/(?<![\d.\/と])(\d+と\d+\/\d+|\d+\/\d+|\d+(?:\.\d+)?)(?![\d.\/]|\s*[%％])([^\d\s、（）()%％]*)/g,(m,n,u)=>{const v=pnum(n)*f;if(v<1&&/^(kg|L)/.test(u))return fnum(v*1000,"g")+(u[0]==="k"?"g":"ml")+u.slice(u[0]==="k"?2:1);return fnum(v,u)+u});
+const stepHTML=(t,f)=>esc(t).replace(/[\[［]([^\]］]+)[\]］]/g,(m,a)=>`<b class="q">${scaleAmt(a,f)}</b>`);
+function renderMeta(){const d=cur;
+  $("shMeta").innerHTML=`<span class="kind">${CLABEL[d.cat]}</span><span>${SRC[d.src][0]}</span>${d.tl?`<span>時間 <b>${d.tl}</b></span>`:""}${edits[d.name]?'<span class="ed">編集済み</span>':""}<span class="wl" id="shWl"${wl?"":" hidden"}>画面オン</span>`}
+function renderBody(){
+  const r=recipe(cur);if(!r)return;
+  const [sv,ings,steps]=r,n=baseN(sv),f=factor(sv),dn=new Set(doneS[cur.name]||[]);
+  const P=$("shPeople");P.classList.toggle("x3",!n);
+  P.innerHTML=n?[1,2,3,4,5,6].map(k=>`<button class="cell" data-p="${k}" aria-pressed="${curN(sv)===k}">${k}人分</button>`).join("")
+    :[[0.5,"1/2倍"],[1,"1倍"],[2,"2倍"]].map(([k,l])=>`<button class="cell" data-m="${k}" aria-pressed="${mult===k}">${l}</button>`).join("");
+  $("shServ").textContent=`材料（${n?curN(sv)+"人分":sv+(mult===1?"":mult===2?"の2倍":"の半量")}）`;
+  $("shIng").innerHTML=ings.map(([a,b])=>`<div class="cell"><span>${esc(a)}</span><span class="amt">${esc(scaleAmt(b||"",f))}</span></div>`).join("");
+  $("shSteps").innerHTML=steps.map((t,i)=>`<button class="cell${dn.has(i)?" done":""}" data-s="${i}"><span class="no">${dn.has(i)?"済":i+1}</span><span>${stepHTML(t,f)}</span></button>`).join("")
+    +(dn.size?'<button class="cell rs" data-s="reset">済みの印を消す</button>':"");
+  fill($("shIng"),"cell gap");
+}
+function sheetActs(d){const m=marks[d.name]||{};
+  $("shActs").innerHTML=`<button data-act="edit">編集</button><button class="made" data-mark="made" aria-pressed="${!!m.made}">作った</button><button class="want" data-mark="want" aria-pressed="${!!m.want}">作りたい</button><a href="${esc(d.url)}" target="_blank" rel="noopener">元の記事</a><button data-act="close">閉じる</button>`}
+function showView(){$("shView").hidden=false;$("shEdit").hidden=true}
+function openSheet(d){
+  if(!recipe(d))return;cur=d;mult=1;
+  $("shName").textContent=d.name;$("shTip").textContent=d.tip;
+  renderMeta();sheetActs(d);showView();
+  $("sheet").hidden=false;document.body.classList.add("lock");$("sheet").scrollTop=0;renderBody();
+  if(top===self){try{history.pushState({bl:1},"");pushed=true}catch(e){}}
+  lockOn();$("shX").focus({preventScroll:true});
+}
+function hideSheet(){$("sheet").hidden=true;document.body.classList.remove("lock");lockOff();showView();
   const a=cur&&$("list").querySelector(`.rcp[data-i="${cur.i}"] [data-act=open]`);if(a)a.focus({preventScroll:true})}
 function closeSheet(){if(pushed){pushed=false;history.back()}else hideSheet()}
+// 画面を消さない（対応している端末だけ）
+async function lockOn(){try{if("wakeLock" in navigator&&!wl&&document.visibilityState==="visible"){wl=await navigator.wakeLock.request("screen");wl.addEventListener("release",()=>{wl=null;const e=$("shWl");if(e)e.hidden=true});const e=$("shWl");if(e)e.hidden=false}}catch(e){wl=null}}
+function lockOff(){const w=wl;wl=null;try{if(w)w.release()}catch(e){}const e=$("shWl");if(e)e.hidden=true}
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&!$("sheet").hidden)lockOn()});
 $("shX").addEventListener("click",closeSheet);
+$("shPeople").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.p){people=+b.dataset.p;jset("bistrolab-people",people)}else mult=+b.dataset.m;renderBody()});
+$("shSteps").addEventListener("click",e=>{const b=e.target.closest("[data-s]");if(!b)return;
+  if(b.dataset.s==="reset")delete doneS[cur.name];
+  else{const i=+b.dataset.s,a=new Set(doneS[cur.name]||[]);a.has(i)?a.delete(i):a.add(i);if(a.size)doneS[cur.name]=[...a];else delete doneS[cur.name]}
+  jset("bistrolab-steps",doneS);renderBody()});
 $("shActs").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
   if(b.dataset.act==="close"){closeSheet();return}
+  if(b.dataset.act==="edit"){openEdit();return}
   const m=toggleMark(cur,b.dataset.mark);sheetActs(cur);afterMark(cur,m)});
+// 自分用の書き換え（この端末に保存）
+function openEdit(){const [sv,ings,steps]=recipe(cur);
+  $("edServ").value=sv;$("edIng").value=ings.map(x=>x.join(" ")).join("\n");$("edSteps").value=steps.join("\n");
+  const r=$("edReset");r.dataset.armed="";r.textContent="標準に戻す";r.disabled=!edits[cur.name];
+  $("shView").hidden=true;$("shEdit").hidden=false;$("sheet").scrollTop=0}
+$("edCancel").addEventListener("click",()=>{showView();renderBody()});
+$("edSave").addEventListener("click",()=>{
+  const sv=$("edServ").value.trim()||recipe(cur)[0];
+  const ings=$("edIng").value.split("\n").map(l=>l.trim()).filter(Boolean).map(l=>{const m=/^(\S+)[ 　]+(.+)$/.exec(l);return m?[m[1],m[2].trim()]:[l,""]});
+  const steps=$("edSteps").value.split("\n").map(l=>l.trim()).filter(Boolean);
+  if(!ings.length||!steps.length)return;
+  edits[cur.name]=[sv,ings,steps];jset("bistrolab-edits",edits);delete doneS[cur.name];jset("bistrolab-steps",doneS);
+  renderMeta();showView();renderBody()});
+$("edReset").addEventListener("click",e=>{const b=e.currentTarget;
+  if(!b.dataset.armed){b.dataset.armed="1";b.textContent="もう一度押すと戻る";return}
+  delete edits[cur.name];jset("bistrolab-edits",edits);delete doneS[cur.name];jset("bistrolab-steps",doneS);
+  renderMeta();showView();renderBody()});
 addEventListener("popstate",()=>{if(!$("sheet").hidden){pushed=false;hideSheet()}});
 addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("sheet").hidden)closeSheet()});
 let rz=0;addEventListener("resize",()=>{cancelAnimationFrame(rz);rz=requestAnimationFrame(fillAll)});
