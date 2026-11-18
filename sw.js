@@ -1,6 +1,6 @@
 // ビストロラボ：ネット優先。つながらないときは保存した控えを表示する
-const CACHE = "bistrolab-v1";
-const CORE = ["./", "index.html", "manifest.webmanifest", "bl1-favicon-32.png", "bl1-apple-touch-icon-180.png", "bl1-icon-192.png", "bl1-icon-512.png", "bl1-icon-maskable-512.png"];
+const CACHE = "bistrolab-v2";
+const CORE = ["./", "index.html", "manifest.webmanifest", "bistro-recipes.json", "bl1-favicon-32.png", "bl1-apple-touch-icon-180.png", "bl1-icon-192.png", "bl1-icon-512.png", "bl1-icon-maskable-512.png"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(CORE)).then(() => self.skipWaiting()));
